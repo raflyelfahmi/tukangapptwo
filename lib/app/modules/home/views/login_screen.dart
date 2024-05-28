@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tukangapptwo/app/modules/dashboarduser/views/dashboarduser_view.dart';
+import 'package:tukangapptwo/app/modules/registeruser/views/registeruser_view.dart';
 // import 'package:tukangapptwo/app/modules/dashboarduser/views/dashboarduser_view.dart';
 
 // import '../../buttonregister/views/buttonregister_view.dart';
@@ -290,6 +292,33 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: Text("Login"),
                 ),
+                SizedBox(height: 20),
+                    RichText(
+                      text: TextSpan(
+                        text: "Kamu belum punya akun? ",
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: "Daftar",
+                            style: TextStyle(
+                              color: Color(0xFF9A0000),
+                              fontWeight: FontWeight.bold,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RegisteruserView(),
+                                  ),
+                                );
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
               ],
             ),
           ),
