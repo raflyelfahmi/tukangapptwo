@@ -208,61 +208,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tukangapptwo/app/modules/home/views/login_screen.dart';
-
-// class DashboarduserView extends StatefulWidget {
-//   const DashboarduserView({super.key});
-
-//   @override
-//   State<DashboarduserView> createState() => _DashboarduserViewState();
-// }
-
-// class _DashboarduserViewState extends State<DashboarduserView> {
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     String? _email = _auth.currentUser!.email;
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Dasboard"),
-//       ),
-//       // body: Center(
-//       //   child: Padding(
-//       //     padding: EdgeInsets.all(20),
-//       //     child: Column(
-//       //       mainAxisAlignment: MainAxisAlignment.center,
-//       //       children: [
-//       //         Text("Logged In With: $_email"),
-//       //         SizedBox(
-//       //           height: 50,
-//       //         ),
-//       //         ElevatedButton(
-//       //           onPressed: () {
-//       //             _auth.signOut();
-//       //             Navigator.push(
-//       //                 context,
-//       //                 MaterialPageRoute(
-//       //                   builder: (context) => LoginScreen(),
-//       //                 ));
-//       //           },
-//       //           style: ElevatedButton.styleFrom(
-//       //             foregroundColor: Colors.white,
-//       //             backgroundColor: Color(0xFF9A0000), // Warna teks
-//       //           ),
-//       //           child: Text("SignOut"),
-//       //         ),
-//       //       ],
-//       //     ),
-//       //   ),
-//       // ),
-//     ); //Scaffold
-//   }
-// }
-
-
-
-import 'package:flutter/material.dart';
 
 class DashboarduserView extends StatefulWidget {
 const DashboarduserView({super.key});
@@ -299,12 +244,12 @@ class _DashboarduserViewState extends State<DashboarduserView> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.all(4),
+            padding: EdgeInsets.fromLTRB(4, 4, 10, 4),
             child:
                 Icon(Icons.notifications, color: Color(0xffffffff), size: 20),
           ),
           Padding(
-            padding: EdgeInsets.all(4),
+            padding: EdgeInsets.fromLTRB(4, 4, 10, 4),
             child: Icon(Icons.person, color: Color(0xffffffff), size: 20),
           ),
         ],
@@ -345,7 +290,7 @@ class _DashboarduserViewState extends State<DashboarduserView> {
                     children: [
                       ///***If you have exported images you must have to copy those images in assets/images directory.
                       Image(
-                        image: AssetImage("assets/images/Frame.png"),
+                        image: AssetImage("assets/icon/painter.png"),
                         height: 30,
                         width: 30,
                         fit: BoxFit.cover,
@@ -381,7 +326,7 @@ class _DashboarduserViewState extends State<DashboarduserView> {
                     children: [
                       ///***If you have exported images you must have to copy those images in assets/images directory.
                       Image(
-                        image: AssetImage("assets/images/Frame-%281%29.png"),
+                        image: AssetImage("assets/icon/ceramist.png"),
                         height: 30,
                         width: 30,
                         fit: BoxFit.cover,
@@ -417,7 +362,7 @@ class _DashboarduserViewState extends State<DashboarduserView> {
                     children: [
                       ///***If you have exported images you must have to copy those images in assets/images directory.
                       Image(
-                        image: AssetImage("assets/images/Frame-%282%29.png"),
+                        image: AssetImage("assets/icon/rooftile.png"),
                         height: 30,
                         width: 30,
                         fit: BoxFit.cover,
@@ -453,7 +398,7 @@ class _DashboarduserViewState extends State<DashboarduserView> {
                     children: [
                       ///***If you have exported images you must have to copy those images in assets/images directory.
                       Image(
-                        image: AssetImage("assets/images/Frame-%283%29.png"),
+                        image: AssetImage("assets/icon/etc.png"),
                         height: 30,
                         width: 30,
                         fit: BoxFit.cover,

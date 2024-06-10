@@ -8,6 +8,9 @@ abstract class Routes {
   static const REGISTERTUKANG = _Paths.REGISTERTUKANG;
   static const REGISTERUSER = _Paths.REGISTERUSER;
   static const DASHBOARDUSER = _Paths.DASHBOARDUSER;
+  static const WELCOMESCREENUSER = _Paths.WELCOMESCREENUSER;
+  static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
+  static const APPICON = _Paths.APPICON;
 }
 
 abstract class _Paths {
@@ -17,4 +20,7 @@ abstract class _Paths {
   static const REGISTERTUKANG = '/registertukang';
   static const REGISTERUSER = '/registeruser';
   static const DASHBOARDUSER = '/dashboarduser';
+  static const WELCOMESCREENUSER = '/welcomescreenuser';
+  static const SPLASHSCREEN = '/splashscreen';
+  static const APPICON = '/appicon';
 }

@@ -2,16 +2,21 @@ name: tukangapptwo
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
+
 environment: 
   sdk: '>=3.3.4 <4.0.0'
 
 dependencies: 
   cupertino_icons: ^1.0.6
+  flutter_launcher_icons: ^0.13.1
   get: 4.6.6
   firebase_core: ^2.31.1
   firebase_auth: 4.19.6
   flutter: 
     sdk: flutter
+  another_flushbar: ^1.12.30
+  firebase_database: ^10.5.7
+  rename_app: ^1.5.0
 
 dev_dependencies: 
   flutter_lints: 4.0.0
@@ -21,3 +26,13 @@ dev_dependencies:
 flutter: 
   uses-material-design: true
 
+  assets:
+    - assets/logo/
+    - assets/icon/
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon aplikasi.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21

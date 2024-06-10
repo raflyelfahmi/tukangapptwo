@@ -10,6 +10,10 @@ import '../modules/registertukang/bindings/registertukang_binding.dart';
 import '../modules/registertukang/views/registertukang_view.dart';
 import '../modules/registeruser/bindings/registeruser_binding.dart';
 import '../modules/registeruser/views/registeruser_view.dart';
+import '../modules/splashscreen/bindings/splashscreen_binding.dart';
+import '../modules/splashscreen/views/splashscreen_view.dart';
+import '../modules/welcomescreenuser/bindings/welcomescreenuser_binding.dart';
+import '../modules/welcomescreenuser/views/welcomescreenuser_view.dart';
 
 part 'app_routes.dart';
 
@@ -41,8 +45,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DASHBOARDUSER,
-      page: () =>  DashboarduserView(),
+      page: () => DashboarduserView(),
       binding: DashboarduserBinding(),
+    ),
+    GetPage(
+      name: _Paths.WELCOMESCREENUSER,
+      page: () => WelcomescreenuserView(),
+      binding: WelcomescreenuserBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASHSCREEN,
+      page: () => const SplashscreenView(),
+      binding: SplashscreenBinding(),
     ),
   ];
 }

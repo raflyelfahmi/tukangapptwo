@@ -220,12 +220,129 @@
 //   }
 // }
 
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter/material.dart';
+
+// class RegisteruserView extends StatefulWidget {
+//   const RegisteruserView({super.key});
+
+//   @override
+//   State<RegisteruserView> createState() => _RegisteruserViewState();
+// }
+
+// class _RegisteruserViewState extends State<RegisteruserView> {
+//   final FirebaseAuth _auth = FirebaseAuth.instance;
+//   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+//   final TextEditingController _nameController = TextEditingController();
+//   TextEditingController _emailController = TextEditingController();
+//   TextEditingController _passController = TextEditingController();
+
+//   String _name = "";
+//   String _email = "";
+//   String _password = "";
+
+//   void _handleSignUp() async {
+//     try {
+//       UserCredential userCredential = await _auth
+//           .createUserWithEmailAndPassword(
+//             email: _email,
+//             password: _password);
+//       print("User Registered: ${userCredential.user!.email}");
+//     } catch (e) {
+//       print("Error During Registration: $e");
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text(
+//           "Sign Up",
+//           style: TextStyle(
+//             color: Colors.white,
+//             fontWeight: FontWeight.w600,
+//           ),
+//         ),
+//         backgroundColor: Color(0xFF9A0000), // Mengatur warna AppBar
+//       ),
+//       body: Center(
+//         child: Padding(
+//           padding: EdgeInsets.all(16),
+//           child: Form(
+//             key: _formKey,
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 TextFormField(
+//                   controller: _emailController,
+//                   keyboardType: TextInputType.emailAddress,
+//                   decoration: InputDecoration(
+//                     border: OutlineInputBorder(),
+//                     labelText: "Email",
+//                   ),
+//                   validator: (value) {
+//                     if (value == null || value.isEmpty) {
+//                       return "Please Enter Your Email";
+//                     }
+//                     return null;
+//                   },
+//                   onChanged: (value) {
+//                     setState(() {
+//                       _email = value;
+//                     });
+//                   },
+//                 ),
+//                 SizedBox(height: 20),
+//                 TextFormField(
+//                   controller: _passController,
+//                   obscureText: true,
+//                   decoration: InputDecoration(
+//                     border: OutlineInputBorder(),
+//                     labelText: "Password",
+//                   ),
+//                   validator: (value) {
+//                     if (value == null || value.isEmpty) {
+//                       return "Please Enter Your Password";
+//                     }
+//                     return null;
+//                   },
+//                   onChanged: (value) {
+//                     setState(() {
+//                       _password = value;
+//                     });
+//                   },
+//                 ),
+//                 SizedBox(height: 20),
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     if (_formKey.currentState!.validate()) {
+//                       _handleSignUp();
+//                     }
+//                   },
+//                   style: ElevatedButton.styleFrom(
+//                     foregroundColor: Colors.white,
+//                     backgroundColor: Color(0xFF9A0000), // Warna teks
+//                   ),
+//                   child: Text("Sign Up"),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:another_flushbar/flushbar.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:tukangapptwo/app/modules/home/views/login_screen.dart';
 
 class RegisteruserView extends StatefulWidget {
-  const RegisteruserView({super.key});
+  const RegisteruserView({Key? key}) : super(key: key);
 
   @override
   State<RegisteruserView> createState() => _RegisteruserViewState();
@@ -233,21 +350,96 @@ class RegisteruserView extends StatefulWidget {
 
 class _RegisteruserViewState extends State<RegisteruserView> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
 
+  String _name = "";
   String _email = "";
   String _password = "";
 
   void _handleSignUp() async {
-    try {
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: _email, password: _password);
-      print("User Registered: ${userCredential.user!.email}");
-    } catch (e) {
-      print("Error During Registration: $e");
+    if (!_formKey.currentState!.validate()) {
+      return;
     }
+
+    _name = _nameController.text;
+    _email = _emailController.text;
+    _password = _passController.text;
+
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      );
+
+      // Set nama pengguna setelah berhasil mendaftar
+      await userCredential.user!.updateDisplayName(_name);
+
+      DatabaseReference userRef =
+          _database.ref().child("users").child(userCredential.user!.uid);
+      await userRef.set({
+        "name": _name,
+        "email": _email,
+      });
+
+      _showFlushBar(
+          "User telah terdaftar: ${userCredential.user!.email}", Colors.green,
+          () {
+        // Setelah menampilkan notifikasi, pindah ke halaman login
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
+      });
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'email-already-in-use':
+          errorMessage = 'Email sudah digunakan. Gunakan email lain.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'Email tidak valid.';
+          break;
+        case 'weak-password':
+          errorMessage =
+              'Password terlalu lemah. Gunakan password yang lebih kuat.';
+          break;
+        default:
+          errorMessage = 'Registrasi gagal. Coba lagi.';
+          break;
+      }
+      _showFlushBar(errorMessage, Colors.red, () {});
+    } catch (e) {
+      _showFlushBar("Registrasi gagal: $e", Colors.red, () {});
+    }
+  }
+
+  void _showFlushBar(String message, Color color, VoidCallback onDismiss) {
+    Flushbar(
+      message: message,
+      backgroundColor: color,
+      duration: Duration(seconds: 3),
+      flushbarPosition: FlushbarPosition.TOP,
+      margin: EdgeInsets.all(8),
+      borderRadius: BorderRadius.circular(8),
+      onStatusChanged: (status) {
+        if (status == FlushbarStatus.DISMISSED) {
+          onDismiss();
+        }
+      },
+    )..show(context);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passController.dispose();
+    super.dispose();
   }
 
   @override
@@ -271,6 +463,26 @@ class _RegisteruserViewState extends State<RegisteruserView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                TextFormField(
+                  controller: _nameController,
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Name",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please Enter Your Name";
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      _name = value;
+                    });
+                  },
+                ),
+                SizedBox(height: 20),
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
