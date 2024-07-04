@@ -17,6 +17,7 @@ dependencies:
   another_flushbar: ^1.12.30
   firebase_database: ^10.5.7
   rename_app: ^1.5.0
+  iconsax: ^0.0.8
 
 dev_dependencies: 
   flutter_lints: 4.0.0

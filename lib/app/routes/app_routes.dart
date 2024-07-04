@@ -11,6 +11,14 @@ abstract class Routes {
   static const WELCOMESCREENUSER = _Paths.WELCOMESCREENUSER;
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
   static const APPICON = _Paths.APPICON;
+  static const NAVBAR = _Paths.NAVBAR;
+  static const NOTIFICATION = _Paths.NOTIFICATION;
+  static const PROFILSCREEN = _Paths.PROFILSCREEN;
+  static const PAINTER = _Paths.PAINTER;
+  static const CERAMIST = _Paths.CERAMIST;
+  static const ROOFTILE = _Paths.ROOFTILE;
+  static const ETC = _Paths.ETC;
+  static const TWS = _Paths.TWS;
 }
 
 abstract class _Paths {
@@ -23,4 +31,12 @@ abstract class _Paths {
   static const WELCOMESCREENUSER = '/welcomescreenuser';
   static const SPLASHSCREEN = '/splashscreen';
   static const APPICON = '/appicon';
+  static const NAVBAR = '/navbar';
+  static const NOTIFICATION = '/notification';
+  static const PROFILSCREEN = '/profilscreen';
+  static const PAINTER = '/painter';
+  static const CERAMIST = '/ceramist';
+  static const ROOFTILE = '/rooftile';
+  static const ETC = '/etc';
+  static const TWS = '/tws';
 }

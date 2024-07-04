@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(), // Tema terang
       darkTheme: ThemeData.dark(), // Tema gelap
       home:  SplashscreenView(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

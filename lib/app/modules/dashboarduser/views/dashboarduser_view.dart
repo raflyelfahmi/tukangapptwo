@@ -1,10 +1,61 @@
+// import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
+// import 'package:tukangapptwo/app/component/navbar_view.dart';
+// import 'package:tukangapptwo/app/modules/ceramist/views/ceramist_view.dart';
+// import 'package:tukangapptwo/app/modules/etc/views/etc_view.dart';
+// import 'package:tukangapptwo/app/modules/notification/views/notification_view.dart';
+// import 'package:tukangapptwo/app/modules/painter/views/painter_view.dart';
+// import 'package:tukangapptwo/app/modules/profilscreen/views/profilscreen_view.dart';
+// import 'package:tukangapptwo/app/modules/rooftile/views/rooftile_view.dart';
 
-// class DashboarduserViewView extends StatelessWidget {
+// class DashboarduserView extends StatefulWidget {
+//   const DashboarduserView({super.key});
+
+//   @override
+//   State<DashboarduserView> createState() => _DashboarduserViewState();
+// }
+
+// class _DashboarduserViewState extends State<DashboarduserView> {
+//   int _currentIndex = 0;
+//   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+//   void _onItemTapped(int index) {
+//     setState(() {
+//       _currentIndex = index;
+//       if (index == 3) {
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(builder: (context) => NotificationView()),
+//         );
+//       }
+
+//       if (index == 1) {
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(builder: (context) => ProfilscreenView()),
+//         );
+//       }
+//       if (index == 0) {
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(builder: (context) => DashboarduserView()),
+//         );
+//       }
+//     });
+//   }
+
 //   @override
 //   Widget build(BuildContext context) {
+//     String? _email = _auth.currentUser!.email;
+
+//     // Get the current theme brightness
+//     final Brightness currentBrightness = Theme.of(context).brightness;
+
+//     // Determine the button background color based on the theme
+//     final Color buttonBackgroundColor =
+//         currentBrightness == Brightness.dark ? Colors.black : Colors.white;
+
 //     return Scaffold(
-//       backgroundColor: Color(0xffffffff),
 //       appBar: AppBar(
 //         elevation: 4,
 //         centerTitle: false,
@@ -22,17 +73,6 @@
 //             color: Color(0xffffffff),
 //           ),
 //         ),
-//         actions: [
-//           Padding(
-//             padding: EdgeInsets.all(4),
-//             child:
-//                 Icon(Icons.notifications, color: Color(0xffffffff), size: 20),
-//           ),
-//           Padding(
-//             padding: EdgeInsets.all(4),
-//             child: Icon(Icons.person, color: Color(0xffffffff), size: 20),
-//           ),
-//         ],
 //       ),
 //       body: Column(
 //         mainAxisAlignment: MainAxisAlignment.start,
@@ -53,32 +93,31 @@
 //                 childAspectRatio: 1.3,
 //               ),
 //               children: [
-//                 Container(
-//                   alignment: Alignment.center,
-//                   margin: EdgeInsets.all(0),
-//                   padding: EdgeInsets.all(8),
-//                   decoration: BoxDecoration(
-//                     color: Color(0x1fffffff),
-//                     shape: BoxShape.rectangle,
-//                     borderRadius: BorderRadius.circular(12.0),
-//                     border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.push(
+//                       context,
+//                       MaterialPageRoute(builder: (context) => PainterView()),
+//                     );
+//                   },
+//                   style: ElevatedButton.styleFrom(
+//                     padding: EdgeInsets.all(8),
+//                     backgroundColor: buttonBackgroundColor,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(12.0),
+//                       side: BorderSide(color: Color(0x4d9e9e9e), width: 1),
+//                     ),
+//                     elevation: 2, // Set elevation to show shadow
+//                     foregroundColor:
+//                         Colors.grey, // Set text color for disabled state
 //                   ),
 //                   child: Column(
 //                     mainAxisAlignment: MainAxisAlignment.center,
-//                     crossAxisAlignment: CrossAxisAlignment.center,
-//                     mainAxisSize: MainAxisSize.max,
 //                     children: [
-//                       ///***If you have exported images you must have to copy those images in assets/images directory.
-//                       Image(
-//                         image: AssetImage("assets/images/Frame.png"),
-//                         height: 30,
-//                         width: 30,
-//                         fit: BoxFit.cover,
-//                       ),
+//                       Image.asset("assets/icon/painter.png",
+//                           height: 30, width: 30, fit: BoxFit.cover),
 //                       Text(
 //                         "Painter",
-//                         textAlign: TextAlign.start,
-//                         overflow: TextOverflow.clip,
 //                         style: TextStyle(
 //                           fontWeight: FontWeight.w400,
 //                           fontStyle: FontStyle.normal,
@@ -89,32 +128,31 @@
 //                     ],
 //                   ),
 //                 ),
-//                 Container(
-//                   alignment: Alignment.center,
-//                   margin: EdgeInsets.all(0),
-//                   padding: EdgeInsets.all(8),
-//                   decoration: BoxDecoration(
-//                     color: Color(0x1fffffff),
-//                     shape: BoxShape.rectangle,
-//                     borderRadius: BorderRadius.circular(12.0),
-//                     border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.push(
+//                       context,
+//                       MaterialPageRoute(builder: (context) => CeramistView()),
+//                     );
+//                   },
+//                   style: ElevatedButton.styleFrom(
+//                     padding: EdgeInsets.all(8),
+//                     backgroundColor: buttonBackgroundColor,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(12.0),
+//                       side: BorderSide(color: Color(0x4d9e9e9e), width: 1),
+//                     ),
+//                     elevation: 2, // Set elevation to show shadow
+//                     foregroundColor:
+//                         Colors.grey, // Set text color for disabled state
 //                   ),
 //                   child: Column(
 //                     mainAxisAlignment: MainAxisAlignment.center,
-//                     crossAxisAlignment: CrossAxisAlignment.center,
-//                     mainAxisSize: MainAxisSize.max,
 //                     children: [
-//                       ///***If you have exported images you must have to copy those images in assets/images directory.
-//                       Image(
-//                         image: AssetImage("assets/images/Frame-%281%29.png"),
-//                         height: 30,
-//                         width: 30,
-//                         fit: BoxFit.cover,
-//                       ),
+//                       Image.asset("assets/icon/ceramist.png",
+//                           height: 30, width: 30, fit: BoxFit.cover),
 //                       Text(
 //                         "Ceramist",
-//                         textAlign: TextAlign.start,
-//                         overflow: TextOverflow.clip,
 //                         style: TextStyle(
 //                           fontWeight: FontWeight.w400,
 //                           fontStyle: FontStyle.normal,
@@ -125,32 +163,31 @@
 //                     ],
 //                   ),
 //                 ),
-//                 Container(
-//                   alignment: Alignment.center,
-//                   margin: EdgeInsets.all(0),
-//                   padding: EdgeInsets.all(8),
-//                   decoration: BoxDecoration(
-//                     color: Color(0x1fffffff),
-//                     shape: BoxShape.rectangle,
-//                     borderRadius: BorderRadius.circular(12.0),
-//                     border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.push(
+//                       context,
+//                       MaterialPageRoute(builder: (context) => RooftileView()),
+//                     );
+//                   },
+//                   style: ElevatedButton.styleFrom(
+//                     padding: EdgeInsets.all(8),
+//                     backgroundColor: buttonBackgroundColor,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(12.0),
+//                       side: BorderSide(color: Color(0x4d9e9e9e), width: 1),
+//                     ),
+//                     elevation: 2, // Set elevation to show shadow
+//                     foregroundColor:
+//                         Colors.grey, // Set text color for disabled state
 //                   ),
 //                   child: Column(
 //                     mainAxisAlignment: MainAxisAlignment.center,
-//                     crossAxisAlignment: CrossAxisAlignment.center,
-//                     mainAxisSize: MainAxisSize.max,
 //                     children: [
-//                       ///***If you have exported images you must have to copy those images in assets/images directory.
-//                       Image(
-//                         image: AssetImage("assets/images/Frame-%282%29.png"),
-//                         height: 30,
-//                         width: 30,
-//                         fit: BoxFit.cover,
-//                       ),
+//                       Image.asset("assets/icon/rooftile.png",
+//                           height: 30, width: 30, fit: BoxFit.cover),
 //                       Text(
 //                         "Rooftile",
-//                         textAlign: TextAlign.start,
-//                         overflow: TextOverflow.clip,
 //                         style: TextStyle(
 //                           fontWeight: FontWeight.w400,
 //                           fontStyle: FontStyle.normal,
@@ -161,32 +198,31 @@
 //                     ],
 //                   ),
 //                 ),
-//                 Container(
-//                   alignment: Alignment.center,
-//                   margin: EdgeInsets.all(0),
-//                   padding: EdgeInsets.all(8),
-//                   decoration: BoxDecoration(
-//                     color: Color(0x1fffffff),
-//                     shape: BoxShape.rectangle,
-//                     borderRadius: BorderRadius.circular(12.0),
-//                     border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.push(
+//                       context,
+//                       MaterialPageRoute(builder: (context) => EtcView()),
+//                     );
+//                   },
+//                   style: ElevatedButton.styleFrom(
+//                     padding: EdgeInsets.all(8),
+//                     backgroundColor: buttonBackgroundColor,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(12.0),
+//                       side: BorderSide(color: Color(0x4d9e9e9e), width: 1),
+//                     ),
+//                     elevation: 2, // Set elevation to show shadow
+//                     foregroundColor:
+//                         Colors.grey, // Set text color for disabled state
 //                   ),
 //                   child: Column(
 //                     mainAxisAlignment: MainAxisAlignment.center,
-//                     crossAxisAlignment: CrossAxisAlignment.center,
-//                     mainAxisSize: MainAxisSize.max,
 //                     children: [
-//                       ///***If you have exported images you must have to copy those images in assets/images directory.
-//                       Image(
-//                         image: AssetImage("assets/images/Frame-%283%29.png"),
-//                         height: 30,
-//                         width: 30,
-//                         fit: BoxFit.cover,
-//                       ),
+//                       Image.asset("assets/icon/etc.png",
+//                           height: 30, width: 30, fit: BoxFit.cover),
 //                       Text(
 //                         "Etc",
-//                         textAlign: TextAlign.start,
-//                         overflow: TextOverflow.clip,
 //                         style: TextStyle(
 //                           fontWeight: FontWeight.w400,
 //                           fontStyle: FontStyle.normal,
@@ -202,29 +238,74 @@
 //           ),
 //         ],
 //       ),
+//       bottomNavigationBar: BottomNavBar(
+//         currentIndex: _currentIndex,
+//         onTap: _onItemTapped,
+//       ),
 //     );
 //   }
 // }
 
+
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tukangapptwo/app/component/navbar_view.dart';
+import 'package:tukangapptwo/app/modules/ceramist/views/ceramist_view.dart';
+import 'package:tukangapptwo/app/modules/etc/views/etc_view.dart';
+import 'package:tukangapptwo/app/modules/notification/views/notification_view.dart';
+import 'package:tukangapptwo/app/modules/painter/views/painter_view.dart';
+import 'package:tukangapptwo/app/modules/profilscreen/views/profilscreen_view.dart';
+import 'package:tukangapptwo/app/modules/rooftile/views/rooftile_view.dart';
 
 class DashboarduserView extends StatefulWidget {
-const DashboarduserView({super.key});
+  const DashboarduserView({super.key});
 
   @override
   State<DashboarduserView> createState() => _DashboarduserViewState();
 }
 
-
 class _DashboarduserViewState extends State<DashboarduserView> {
+  int _currentIndex = 0;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      if (index == 3) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NotificationView()),
+        );
+      }
+
+      if (index == 1) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProfilscreenView()),
+        );
+      }
+      if (index == 0) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DashboarduserView()),
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     String? _email = _auth.currentUser!.email;
+
+    // Get the current theme brightness
+    final Brightness currentBrightness = Theme.of(context).brightness;
+
+    // Determine the button background color based on the theme
+    final Color buttonBackgroundColor =
+        currentBrightness == Brightness.dark ? Colors.black : Colors.white;
+
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
       appBar: AppBar(
         elevation: 4,
         centerTitle: false,
@@ -242,17 +323,6 @@ class _DashboarduserViewState extends State<DashboarduserView> {
             color: Color(0xffffffff),
           ),
         ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(4, 4, 10, 4),
-            child:
-                Icon(Icons.notifications, color: Color(0xffffffff), size: 20),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(4, 4, 10, 4),
-            child: Icon(Icons.person, color: Color(0xffffffff), size: 20),
-          ),
-        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -273,32 +343,31 @@ class _DashboarduserViewState extends State<DashboarduserView> {
                 childAspectRatio: 1.3,
               ),
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Color(0x1fffffff),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PainterView()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(8),
+                    backgroundColor: buttonBackgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      side: BorderSide(color: Color(0xff9a0000), width: 1),
+                    ),
+                    elevation: 2, // Set elevation to show shadow
+                    foregroundColor:
+                        Colors.grey, // Set text color for disabled state
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
                     children: [
-                      ///***If you have exported images you must have to copy those images in assets/images directory.
-                      Image(
-                        image: AssetImage("assets/icon/painter.png"),
-                        height: 30,
-                        width: 30,
-                        fit: BoxFit.cover,
-                      ),
+                      Image.asset("assets/icon/painter.png",
+                          height: 30, width: 30, fit: BoxFit.cover),
                       Text(
                         "Painter",
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.clip,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -309,32 +378,31 @@ class _DashboarduserViewState extends State<DashboarduserView> {
                     ],
                   ),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Color(0x1fffffff),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CeramistView()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(8),
+                    backgroundColor: buttonBackgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      side: BorderSide(color: Color(0xff9a0000), width: 1),
+                    ),
+                    elevation: 2, // Set elevation to show shadow
+                    foregroundColor:
+                        Colors.grey, // Set text color for disabled state
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
                     children: [
-                      ///***If you have exported images you must have to copy those images in assets/images directory.
-                      Image(
-                        image: AssetImage("assets/icon/ceramist.png"),
-                        height: 30,
-                        width: 30,
-                        fit: BoxFit.cover,
-                      ),
+                      Image.asset("assets/icon/ceramist.png",
+                          height: 30, width: 30, fit: BoxFit.cover),
                       Text(
                         "Ceramist",
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.clip,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -345,32 +413,31 @@ class _DashboarduserViewState extends State<DashboarduserView> {
                     ],
                   ),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Color(0x1fffffff),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RooftileView()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(8),
+                    backgroundColor: buttonBackgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      side: BorderSide(color: Color(0xff9a0000), width: 1),
+                    ),
+                    elevation: 2, // Set elevation to show shadow
+                    foregroundColor:
+                        Colors.grey, // Set text color for disabled state
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
                     children: [
-                      ///***If you have exported images you must have to copy those images in assets/images directory.
-                      Image(
-                        image: AssetImage("assets/icon/rooftile.png"),
-                        height: 30,
-                        width: 30,
-                        fit: BoxFit.cover,
-                      ),
+                      Image.asset("assets/icon/rooftile.png",
+                          height: 30, width: 30, fit: BoxFit.cover),
                       Text(
                         "Rooftile",
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.clip,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -381,32 +448,31 @@ class _DashboarduserViewState extends State<DashboarduserView> {
                     ],
                   ),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Color(0x1fffffff),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EtcView()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(8),
+                    backgroundColor: buttonBackgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      side: BorderSide(color: Color(0xff9a0000), width: 1),
+                    ),
+                    elevation: 2, // Set elevation to show shadow
+                    foregroundColor:
+                        Colors.grey, // Set text color for disabled state
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
                     children: [
-                      ///***If you have exported images you must have to copy those images in assets/images directory.
-                      Image(
-                        image: AssetImage("assets/icon/etc.png"),
-                        height: 30,
-                        width: 30,
-                        fit: BoxFit.cover,
-                      ),
+                      Image.asset("assets/icon/etc.png",
+                          height: 30, width: 30, fit: BoxFit.cover),
                       Text(
                         "Etc",
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.clip,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -421,6 +487,10 @@ class _DashboarduserViewState extends State<DashboarduserView> {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
