@@ -1,345 +1,9 @@
-// import 'package:flutter/material.dart';
-
-// import '../../buttonregister/views/buttonregister_view.dart';
-
-// class RegisteruserView extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Color(0xffffffff),
-//       appBar: AppBar(
-//         elevation: 4,
-//         centerTitle: false,
-//         automaticallyImplyLeading: false,
-//         backgroundColor: Color(0xff9a0000),
-//         shape: RoundedRectangleBorder(
-//           borderRadius: BorderRadius.zero,
-//         ),
-//         leading: IconButton(
-//           icon: Icon(
-//             Icons.arrow_back,
-//             color: Color(0xffffffff),
-//             size: 20,
-//           ),
-//           onPressed: () {
-//             Navigator.of(context).pushReplacement(
-//               MaterialPageRoute(
-//                 builder: (context) => ButtonregisterView(),
-//               ),
-//             );
-//           },
-//         ),
-//       ),
-//       body: Align(
-//         alignment: Alignment.center,
-//         child: Padding(
-//           padding: EdgeInsets.all(16),
-//           child: SingleChildScrollView(
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               crossAxisAlignment: CrossAxisAlignment.center,
-//               mainAxisSize: MainAxisSize.max,
-//               children: [
-//                 ///***If you have exported images you must have to copy those images in assets/images directory.
-//                 Image(
-//                   image: AssetImage("assets/images/icons8-person-64.png"),
-//                   height: 120,
-//                   width: 120,
-//                   fit: BoxFit.cover,
-//                 ),
-//                 Text(
-//                   "Register User",
-//                   textAlign: TextAlign.start,
-//                   overflow: TextOverflow.clip,
-//                   style: TextStyle(
-//                     fontWeight: FontWeight.w700,
-//                     fontStyle: FontStyle.normal,
-//                     fontSize: 22,
-//                     color: Color(0xff000000),
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: EdgeInsets.fromLTRB(0, 32, 0, 0),
-//                   child: TextField(
-//                     controller: TextEditingController(),
-//                     obscureText: false,
-//                     textAlign: TextAlign.start,
-//                     maxLines: 1,
-//                     style: TextStyle(
-//                       fontWeight: FontWeight.w400,
-//                       fontStyle: FontStyle.normal,
-//                       fontSize: 14,
-//                       color: Color(0xff000000),
-//                     ),
-//                     decoration: InputDecoration(
-//                       disabledBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       focusedBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       enabledBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       hintText: "username",
-//                       hintStyle: TextStyle(
-//                         fontWeight: FontWeight.w400,
-//                         fontStyle: FontStyle.normal,
-//                         fontSize: 14,
-//                         color: Color(0xff000000),
-//                       ),
-//                       filled: true,
-//                       fillColor: Color(0xfff2f2f3),
-//                       isDense: false,
-//                       contentPadding: EdgeInsets.all(8),
-//                     ),
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-//                   child: TextField(
-//                     controller: TextEditingController(),
-//                     obscureText: false,
-//                     textAlign: TextAlign.start,
-//                     maxLines: 1,
-//                     style: TextStyle(
-//                       fontWeight: FontWeight.w400,
-//                       fontStyle: FontStyle.normal,
-//                       fontSize: 14,
-//                       color: Color(0xff000000),
-//                     ),
-//                     decoration: InputDecoration(
-//                       disabledBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       focusedBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       enabledBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       hintText: "email",
-//                       hintStyle: TextStyle(
-//                         fontWeight: FontWeight.w400,
-//                         fontStyle: FontStyle.normal,
-//                         fontSize: 14,
-//                         color: Color(0xff000000),
-//                       ),
-//                       filled: true,
-//                       fillColor: Color(0xfff2f2f3),
-//                       isDense: false,
-//                       contentPadding: EdgeInsets.all(8),
-//                     ),
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-//                   child: TextField(
-//                     controller: TextEditingController(),
-//                     obscureText: true,
-//                     textAlign: TextAlign.start,
-//                     maxLines: 1,
-//                     style: TextStyle(
-//                       fontWeight: FontWeight.w400,
-//                       fontStyle: FontStyle.normal,
-//                       fontSize: 14,
-//                       color: Color(0xff000000),
-//                     ),
-//                     decoration: InputDecoration(
-//                       disabledBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       focusedBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       enabledBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(4.0),
-//                         borderSide:
-//                             BorderSide(color: Color(0xff000000), width: 1),
-//                       ),
-//                       hintText: "password",
-//                       hintStyle: TextStyle(
-//                         fontWeight: FontWeight.w400,
-//                         fontStyle: FontStyle.normal,
-//                         fontSize: 14,
-//                         color: Color(0xff000000),
-//                       ),
-//                       filled: true,
-//                       fillColor: Color(0xfff2f2f3),
-//                       isDense: false,
-//                       contentPadding: EdgeInsets.all(8),
-//                     ),
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: EdgeInsets.fromLTRB(0, 32, 0, 0),
-//                   child: MaterialButton(
-//                     onPressed: () {},
-//                     color: Color(0xff9a0000),
-//                     elevation: 4,
-//                     shape: RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(22.0),
-//                       side: BorderSide(color: Color(0xff808080), width: 1),
-//                     ),
-//                     padding: EdgeInsets.all(16),
-//                     child: Text(
-//                       "Register",
-//                       style: TextStyle(
-//                         fontSize: 14,
-//                         fontWeight: FontWeight.w400,
-//                         fontStyle: FontStyle.normal,
-//                       ),
-//                     ),
-//                     textColor: Color(0xffffffff),
-//                     height: 40,
-//                     minWidth: 140,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/material.dart';
-
-// class RegisteruserView extends StatefulWidget {
-//   const RegisteruserView({super.key});
-
-//   @override
-//   State<RegisteruserView> createState() => _RegisteruserViewState();
-// }
-
-// class _RegisteruserViewState extends State<RegisteruserView> {
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-//   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-//   final TextEditingController _nameController = TextEditingController();
-//   TextEditingController _emailController = TextEditingController();
-//   TextEditingController _passController = TextEditingController();
-
-//   String _name = "";
-//   String _email = "";
-//   String _password = "";
-
-//   void _handleSignUp() async {
-//     try {
-//       UserCredential userCredential = await _auth
-//           .createUserWithEmailAndPassword(
-//             email: _email,
-//             password: _password);
-//       print("User Registered: ${userCredential.user!.email}");
-//     } catch (e) {
-//       print("Error During Registration: $e");
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text(
-//           "Sign Up",
-//           style: TextStyle(
-//             color: Colors.white,
-//             fontWeight: FontWeight.w600,
-//           ),
-//         ),
-//         backgroundColor: Color(0xFF9A0000), // Mengatur warna AppBar
-//       ),
-//       body: Center(
-//         child: Padding(
-//           padding: EdgeInsets.all(16),
-//           child: Form(
-//             key: _formKey,
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 TextFormField(
-//                   controller: _emailController,
-//                   keyboardType: TextInputType.emailAddress,
-//                   decoration: InputDecoration(
-//                     border: OutlineInputBorder(),
-//                     labelText: "Email",
-//                   ),
-//                   validator: (value) {
-//                     if (value == null || value.isEmpty) {
-//                       return "Please Enter Your Email";
-//                     }
-//                     return null;
-//                   },
-//                   onChanged: (value) {
-//                     setState(() {
-//                       _email = value;
-//                     });
-//                   },
-//                 ),
-//                 SizedBox(height: 20),
-//                 TextFormField(
-//                   controller: _passController,
-//                   obscureText: true,
-//                   decoration: InputDecoration(
-//                     border: OutlineInputBorder(),
-//                     labelText: "Password",
-//                   ),
-//                   validator: (value) {
-//                     if (value == null || value.isEmpty) {
-//                       return "Please Enter Your Password";
-//                     }
-//                     return null;
-//                   },
-//                   onChanged: (value) {
-//                     setState(() {
-//                       _password = value;
-//                     });
-//                   },
-//                 ),
-//                 SizedBox(height: 20),
-//                 ElevatedButton(
-//                   onPressed: () {
-//                     if (_formKey.currentState!.validate()) {
-//                       _handleSignUp();
-//                     }
-//                   },
-//                   style: ElevatedButton.styleFrom(
-//                     foregroundColor: Colors.white,
-//                     backgroundColor: Color(0xFF9A0000), // Warna teks
-//                   ),
-//                   child: Text("Sign Up"),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:tukangapptwo/app/modules/home/views/login_screen.dart';
+import 'package:tukangapptwo/app/modules/registerbutton/views/registerbutton_view.dart';
 
 class RegisteruserView extends StatefulWidget {
   const RegisteruserView({Key? key}) : super(key: key);
@@ -353,21 +17,17 @@ class _RegisteruserViewState extends State<RegisteruserView> {
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
-
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   String _name = "";
   String _email = "";
   String _password = "";
+  String _confirmPassword = "";
 
   void _handleSignUp() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-
-    _name = _nameController.text;
-    _email = _emailController.text;
-    _password = _passController.text;
 
     try {
       UserCredential userCredential =
@@ -379,11 +39,13 @@ class _RegisteruserViewState extends State<RegisteruserView> {
       // Set nama pengguna setelah berhasil mendaftar
       await userCredential.user!.updateDisplayName(_name);
 
+      // Simpan data pengguna ke Realtime Database dengan role "pemesan"
       DatabaseReference userRef =
           _database.ref().child("users").child(userCredential.user!.uid);
       await userRef.set({
         "name": _name,
         "email": _email,
+        "role": "pemesan", // Tambahkan peran "pemesan"
       });
 
       _showFlushBar(
@@ -437,8 +99,8 @@ class _RegisteruserViewState extends State<RegisteruserView> {
   @override
   void dispose() {
     _nameController.dispose();
-    _emailController.dispose();
-    _passController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -446,96 +108,179 @@ class _RegisteruserViewState extends State<RegisteruserView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Sign Up",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
+        title: const Text('Daftar sebagai Pemesan'),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF9A0000), Color(0xFF6E6E6E)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
         ),
-        backgroundColor: Color(0xFF9A0000), // Mengatur warna AppBar
+        elevation: 10.0, // Bayangan di bawah AppBar
+        shadowColor: Colors.black.withOpacity(0.5), // Warna bayangan
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 22.0,
+          fontWeight: FontWeight.w600,
+          fontFamily: 'Roboto', // Gunakan font yang lebih modern
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.white, // Warna ikon di AppBar
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => RegisterbuttonView()),
+            );
+          },
+        ),
       ),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  controller: _nameController,
-                  keyboardType: TextInputType.name,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Name",
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Align(
+                    alignment: Alignment(0.4, 0.0), // Atur posisi sedikit ke kanan
+                    child: Image.asset(
+                      'assets/logo/belang new.png',
+                      height: 200.0, // Sesuaikan tinggi logo
+                    ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please Enter Your Name";
-                    }
-                    return null;
-                  },
-                  onChanged: (value) {
-                    setState(() {
-                      _name = value;
-                    });
-                  },
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Email",
+                  const SizedBox(height: 20),
+                  TextFormField(
+                    controller: _nameController,
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Color(0xFF6E6E6E)), // Ubah warna border
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Color(0xFF6E6E6E), width: 2.0), // Warna border saat diklik
+                      ),
+                      labelText: "Name",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please Enter Your Name";
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        _name = value;
+                      });
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please Enter Your Email";
-                    }
-                    return null;
-                  },
-                  onChanged: (value) {
-                    setState(() {
-                      _email = value;
-                    });
-                  },
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: _passController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Password",
+                  SizedBox(height: 20),
+                  TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Color(0xFF6E6E6E)), // Ubah warna border
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Color(0xFF6E6E6E), width: 2.0), // Warna border saat diklik
+                      ),
+                      labelText: "Email",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please Enter Your Email";
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        _email = value;
+                      });
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please Enter Your Password";
-                    }
-                    return null;
-                  },
-                  onChanged: (value) {
-                    setState(() {
-                      _password = value;
-                    });
-                  },
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _handleSignUp();
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Color(0xFF9A0000), // Warna teks
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Color(0xFF6E6E6E)), // Ubah warna border
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Color(0xFF6E6E6E), width: 2.0), // Warna border saat diklik
+                      ),
+                      labelText: "Password",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please Enter Your Password";
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        _password = value;
+                      });
+                    },
                   ),
-                  child: Text("Sign Up"),
-                ),
-              ],
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _confirmPasswordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Color(0xFF6E6E6E)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Color(0xFF6E6E6E), width: 2.0),
+                      ),
+                      labelText: "Konfirmasi Password",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Tolong ketik ulang Password Anda";
+                      }
+                      if (value != _passwordController.text) {
+                        return "Passwords tidak sesuai";
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        _confirmPassword = value;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _handleSignUp();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Color(0xFF9A0000), // Warna teks
+                    ),
+                    child: Text("Daftar"),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

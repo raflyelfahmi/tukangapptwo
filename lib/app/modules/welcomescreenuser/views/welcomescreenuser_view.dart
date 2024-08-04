@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tukangapptwo/app/modules/buttonregister/views/buttonregister_view.dart';
 import 'package:tukangapptwo/app/modules/home/views/login_screen.dart';
+import 'package:tukangapptwo/app/modules/registerbutton/views/registerbutton_view.dart';
 import 'package:tukangapptwo/app/modules/registeruser/views/registeruser_view.dart';
 
 void main() {
@@ -75,7 +75,7 @@ class WelcomescreenuserView extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ButtonregisterView()))
+                              builder: (context) => RegisterbuttonView()))
                     },
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.grey),
