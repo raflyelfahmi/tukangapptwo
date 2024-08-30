@@ -14,10 +14,14 @@ import '../modules/dashboardtukang/bindings/dashboardtukang_binding.dart';
 import '../modules/dashboardtukang/views/dashboardtukang_view.dart';
 import '../modules/dashboarduser/bindings/dashboarduser_binding.dart';
 import '../modules/dashboarduser/views/dashboarduser_view.dart';
+import '../modules/detailcekorder/bindings/detailcekorder_binding.dart';
+import '../modules/detailcekorder/views/detailcekorder_view.dart';
 import '../modules/detailhistorypesanan_tukang/bindings/detailhistorypesanan_tukang_binding.dart';
 import '../modules/detailhistorypesanan_tukang/views/detailhistorypesanan_tukang_view.dart';
 import '../modules/detailhistorypesanan_user/bindings/detailhistorypesanan_user_binding.dart';
 import '../modules/detailhistorypesanan_user/views/detailhistorypesanan_user_view.dart';
+import '../modules/detailpesananuser/bindings/detailpesananuser_binding.dart';
+import '../modules/detailpesananuser/views/detailpesananuser_view.dart' as detailView; // Using alias
 import '../modules/etc/bindings/etc_binding.dart';
 import '../modules/etc/views/etc_view.dart';
 import '../modules/historytukang/bindings/historytukang_binding.dart';
@@ -95,7 +99,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.notification,
-      page: () => const pesananuser(),
+      page: () => const PesananUser(),
       binding: NotificationBinding(),
     ),
     GetPage(
@@ -202,8 +206,23 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAILHISTORYPESANAN_TUKANG,
-      page: () => DetailhistorypesananTukangView(orderId: Get.parameters['orderId'] ?? ''),
+      page: () => DetailhistorypesananTukangView(
+          orderId: Get.parameters['orderId'] ?? ''),
       binding: DetailhistorypesananTukangBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAILPESANANUSER,
+      page: () => const detailView.DetailpesananuserView(
+        orderId: '', // Anda bisa mengubah ini sesuai kebutuhan
+        pemesanName: '', // Anda bisa mengubah ini sesuai kebutuhan
+        tukangName: '', // Anda bisa mengubah ini sesuai kebutuhan
+      ),
+      binding: DetailpesananuserBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAILCEKORDER,
+      page: () => const DetailcekorderView(orderId: '', pemesanName: '', tukangName: ''),
+      binding: DetailcekorderBinding(),
     ),
   ];
 }

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:tukangapptwo/app/modules/detailcekorder/views/detailcekorder_view.dart';
 
 class CekOrderTukangView extends StatefulWidget {
   const CekOrderTukangView({super.key});
@@ -55,49 +56,6 @@ class _CekOrderTukangViewState extends State<CekOrderTukangView> {
     });
   }
 
-  void _updateOrderStatus(String orderId, String newStatus, {String? alasan, String? statusPayment}) async {
-    Map<String, dynamic> updates = {'konfirmasiTukang': newStatus};
-    if (alasan != null) {
-      updates['alasanPenolakan'] = alasan;
-    }
-    if (statusPayment != null) {
-      updates['statusPayment'] = statusPayment;
-    }
-    await _ordersRef.child(orderId).update(updates);
-    _fetchOrders(); // Refresh orders after updating status
-  }
-
-  void _showRejectDialog(String orderId) {
-    TextEditingController alasanController = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Alasan Penolakan'),
-          content: TextField(
-            controller: alasanController,
-            decoration: const InputDecoration(hintText: "Masukkan alasan penolakan"),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Batal'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Kirim'),
-              onPressed: () {
-                _updateOrderStatus(orderId, 'ditolak', alasan: alasanController.text);
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,53 +78,34 @@ class _CekOrderTukangViewState extends State<CekOrderTukangView> {
               itemCount: _orderList.length,
               itemBuilder: (context, index) {
                 final order = _orderList[index];
-                return Card(
-                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  elevation: 2,
-                  child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Alamat: ${order['alamat']}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                        SizedBox(height: 8),
-                        _buildInfoRow('Tanggal', order['tanggal']),
-                        _buildInfoRow('Estimasi', order['estimasi']),
-                        _buildInfoRow('Konfirmasi Tukang', order['konfirmasiTukang']),
-                        _buildInfoRow('Status', order['status']),
-                        _buildInfoRow('Tanggal Mulai', order['tanggalMulai']),
-                        _buildInfoRow('Total Luas', order['totalLuas']),
-                        _buildInfoRow('Pemesan', order['pemesanName']),
-                        _buildInfoRow('Tukang', order['tukangName']),
-                        if (order['konfirmasiTukang'] == 'pending') ...[
-                          SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  _updateOrderStatus(order['id'], 'terima', statusPayment: 'belum lunas');
-                                },
-                                child: const Text('Terima', style: TextStyle(color: Colors.white)), // Ubah warna teks menjadi putih
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF9A0000),
-                                  textStyle: TextStyle(color: Colors.white), // Tambahkan ini untuk memastikan
-                                ),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  _showRejectDialog(order['id']);
-                                },
-                                child: const Text('Tolak', style: TextStyle(color: Colors.white)), // Ubah warna teks menjadi putih
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.grey,
-                                  textStyle: TextStyle(color: Colors.white), // Tambahkan ini untuk memastikan
-                                ),
-                              ),
-                            ],
-                          ),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailcekorderView(
+                          orderId: order['id'],
+                          pemesanName: order['pemesanName'],
+                          tukangName: order['tukangName'],
+                        ),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    elevation: 2,
+                    child: Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Alamat: ${order['alamat']}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          SizedBox(height: 8),
+                          _buildInfoRow('Tanggal', order['tanggal']),
+                          _buildInfoRow('Pemesan', order['pemesanName']),
+                          _buildInfoRow('Tukang', order['tukangName']),
                         ],
-                      ],
+                      ),
                     ),
                   ),
                 );

@@ -19,7 +19,7 @@ class DashboarduserView extends StatefulWidget {
 class _DashboarduserViewState extends State<DashboarduserView> {
   int _currentIndex = 0;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final DatabaseReference _database = FirebaseDatabase.instance.reference();
+  final DatabaseReference _database = FirebaseDatabase.instance.ref();
   bool _isPemesan = false;
   bool _isLoading = true;
   String _userRole = ''; // Added variable to store userRole
@@ -56,7 +56,7 @@ class _DashboarduserViewState extends State<DashboarduserView> {
       if (index == 3) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => pesananuser()),
+          MaterialPageRoute(builder: (context) => PesananUser()),
         );
       }
 
@@ -336,7 +336,7 @@ class _DashboarduserViewState extends State<DashboarduserView> {
       bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
-        userRole: _userRole, // Pass userRole to BottomNavBar
+        userRole: _userRole,
       ),
     );
   }

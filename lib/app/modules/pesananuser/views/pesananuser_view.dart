@@ -3,20 +3,21 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:tukangapptwo/app/modules/component/navbar_view.dart';
 import 'package:tukangapptwo/app/modules/dashboarduser/views/dashboarduser_view.dart';
+import 'package:tukangapptwo/app/modules/detailpesananuser/views/detailpesananuser_view.dart';
 import 'package:tukangapptwo/app/modules/pembayaranpesananuser/views/pembayaranpesananuser_view.dart';
 import 'package:tukangapptwo/app/modules/profilscreen/views/profilscreen_view.dart';
 
-class pesananuser extends StatefulWidget {
-  const pesananuser({super.key});
+class PesananUser extends StatefulWidget {
+  const PesananUser({super.key});
 
   @override
-  State<pesananuser> createState() => _pesananuser();
+  State<PesananUser> createState() => _PesananUser();
 }
 
-class _pesananuser extends State<pesananuser> {
+class _PesananUser extends State<PesananUser> {
   int _currentIndex = 3;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final DatabaseReference _database = FirebaseDatabase.instance.reference();
+  final DatabaseReference _database = FirebaseDatabase.instance.ref();
   bool _isPemesan = false;
   String _userRole = '';
 
@@ -43,20 +44,13 @@ class _pesananuser extends State<pesananuser> {
     }
   }
 
-  void _updateOrderStatus(String orderId, String newStatus) async {
-    await _database.child('orders/$orderId').update({
-      'status': newStatus,
-      'konfirmasiTukang': 'pending'
-    });
-  }
-
   void _onItemTapped(int index) {
     setState(() {
       _currentIndex = index;
       if (index == 3) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => pesananuser()),
+          MaterialPageRoute(builder: (context) => PesananUser()),
         );
       }
 
@@ -141,67 +135,40 @@ class _pesananuser extends State<pesananuser> {
                     final pemesanName = pemesanData?['name'] ?? 'Tidak tersedia';
                     final tukangName = tukangData?['name'] ?? 'Tidak tersedia';
 
-                    return Card(
-                      margin: EdgeInsets.all(12.0),
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Alamat: ${order['alamat'] ?? 'Tidak tersedia'}', 
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                            SizedBox(height: 8),
-                            _buildInfoRow('Tanggal', order['tanggal']),
-                            _buildInfoRow('Status', order['status']),
-                            _buildInfoRow('Pemesan', pemesanName),
-                            _buildInfoRow('Tukang', tukangName),
-                            if (order.containsKey('statusPayment')) _buildInfoRow('Status Pembayaran', order['statusPayment']),
-                            if (order.containsKey('totalLuas')) _buildInfoRow('Total Luas', order['totalLuas']),
-                            if (order.containsKey('pekerjaan')) _buildInfoRow('Pekerjaan', order['pekerjaan']),
-                            if (order.containsKey('totalBiaya')) _buildInfoRow('Total Biaya', order['totalBiaya']),
-                            if (order.containsKey('tanggalMulai')) _buildInfoRow('Tanggal Mulai', order['tanggalMulai']),
-                            if (order.containsKey('estimasi')) _buildInfoRow('Estimasi', order['estimasi']),
-                            SizedBox(height: 16),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                if (order['status'] == 'menunggu')
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      _updateOrderStatus(order['orderId'], 'proses');
-                                    },
-                                    child: const Text(
-                                      'Terima',
-                                      style: TextStyle(color: Colors.white), // Ubah warna teks menjadi putih
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF9A0000),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                                    ),
-                                  ),
-                                if (order['statusPayment'] == 'belum lunas')
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => PembayaranpesananuserView(orderId: order['orderId'])),
-                                      );
-                                    },
-                                    child: const Text(
-                                      'Bayar Sekarang',
-                                      style: TextStyle(color: Colors.white), // Ubah warna teks menjadi putih
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF9A0000),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                                    ),
-                                  ),
-                              ],
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailpesananuserView(
+                              orderId: order['orderId'],
+                              pemesanName: pemesanName,
+                              tukangName: tukangName,
                             ),
-                          ],
+                          ),
+                        );
+                      },
+                      child: Card(
+                        margin: EdgeInsets.all(12.0),
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        child: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Alamat: ${order['alamat'] ?? 'Tidak tersedia'}', 
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                              SizedBox(height: 8),
+                              _buildInfoRow('Tanggal', order['tanggal']),
+                              _buildInfoRow('Status', order['status']),
+                              _buildInfoRow('Pemesan', pemesanName),
+                              _buildInfoRow('Tukang', tukangName),
+                              if (order.containsKey('statusPayment')) _buildInfoRow('Status Pembayaran', order['statusPayment']),
+                              if (order.containsKey('totalBiaya')) _buildInfoRow('Total Biaya', order['totalBiaya']),
+                              SizedBox(height: 16),
+                            ],
+                          ),
                         ),
                       ),
                     );

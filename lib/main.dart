@@ -2,12 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tukangapptwo/app/modules/dashboardtukang/views/dashboardtukang_view.dart';
+import 'package:tukangapptwo/app/modules/dashboarduser/views/dashboarduser_view.dart';
 import 'package:tukangapptwo/app/modules/painter/views/painter_view.dart';
 import 'package:tukangapptwo/app/modules/registerbutton/views/registerbutton_view.dart';
 import 'package:tukangapptwo/app/modules/registertukangnew/views/registertukangnew_view.dart';
 import 'package:tukangapptwo/app/modules/welcomescreenuser/views/welcomescreenuser_view.dart';
-import 'package:tukangapptwo/app/modules/dashboarduser/views/dashboarduser_view.dart';
-import 'package:tukangapptwo/app/modules/dashboardtukang/views/dashboardtukang_view.dart';
 import 'package:tukangapptwo/test.dart';
 
 void main() async {

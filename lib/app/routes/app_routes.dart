@@ -36,6 +36,8 @@ abstract class Routes {
   static const RATINGULASAN = _Paths.RATINGULASAN;
   static const HISTORYTUKANG = _Paths.HISTORYTUKANG;
   static const DETAILHISTORYPESANAN_TUKANG = _Paths.DETAILHISTORYPESANAN_TUKANG;
+  static const DETAILPESANANUSER = _Paths.DETAILPESANANUSER;
+  static const DETAILCEKORDER = _Paths.DETAILCEKORDER;
 }
 
 abstract class _Paths {
@@ -73,4 +75,6 @@ abstract class _Paths {
   static const RATINGULASAN = '/ratingulasan';
   static const HISTORYTUKANG = '/historytukang';
   static const DETAILHISTORYPESANAN_TUKANG = '/detailhistorypesanan-tukang';
+  static const DETAILPESANANUSER = '/detailpesananuser';
+  static const DETAILCEKORDER = '/detailcekorder';
 }
