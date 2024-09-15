@@ -21,13 +21,14 @@ import '../modules/detailhistorypesanan_tukang/views/detailhistorypesanan_tukang
 import '../modules/detailhistorypesanan_user/bindings/detailhistorypesanan_user_binding.dart';
 import '../modules/detailhistorypesanan_user/views/detailhistorypesanan_user_view.dart';
 import '../modules/detailpesananuser/bindings/detailpesananuser_binding.dart';
-import '../modules/detailpesananuser/views/detailpesananuser_view.dart' as detailView; // Using alias
 import '../modules/etc/bindings/etc_binding.dart';
 import '../modules/etc/views/etc_view.dart';
 import '../modules/historytukang/bindings/historytukang_binding.dart';
 import '../modules/historytukang/views/historytukang_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/login_screen.dart';
+import '../modules/kelolaakuntukang/bindings/kelolaakuntukang_binding.dart';
+import '../modules/kelolaakuntukang/views/kelolaakuntukang_view.dart';
 import '../modules/kelolainformasitukang/bindings/kelolainformasitukang_binding.dart';
 import '../modules/kelolainformasitukang/views/kelolainformasitukang_view.dart';
 import '../modules/konsultasiuser/bindings/konsultasiuser_binding.dart';
@@ -56,8 +57,15 @@ import '../modules/rooftile/bindings/rooftile_binding.dart';
 import '../modules/rooftile/views/rooftile_view.dart';
 import '../modules/splashscreen/bindings/splashscreen_binding.dart';
 import '../modules/splashscreen/views/splashscreen_view.dart';
+import '../modules/tu_edittim/bindings/tu_edittim_binding.dart';
+import '../modules/tu_edittim/views/tu_edittim_view.dart';
+import '../modules/tu_tanggaltersedia/bindings/tu_tanggaltersedia_binding.dart';
+import '../modules/tu_tanggaltersedia/views/tu_tanggaltersedia_view.dart';
 import '../modules/welcomescreenuser/bindings/welcomescreenuser_binding.dart';
 import '../modules/welcomescreenuser/views/welcomescreenuser_view.dart';
+
+import '../modules/detailpesananuser/views/detailpesananuser_view.dart'
+    as detailView; // Using alias
 
 part 'app_routes.dart';
 
@@ -221,8 +229,24 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAILCEKORDER,
-      page: () => const DetailcekorderView(orderId: '', pemesanName: '', tukangName: ''),
+      page: () => const DetailcekorderView(
+          orderId: '', pemesanName: '', tukangName: ''),
       binding: DetailcekorderBinding(),
+    ),
+    GetPage(
+      name: _Paths.KELOLAAKUNTUKANG,
+      page: () => const KelolaakuntukangView(),
+      binding: KelolaakuntukangBinding(),
+    ),
+    GetPage(
+      name: _Paths.TU_TANGGALTERSEDIA,
+      page: () => const TuTanggaltersediaView(),
+      binding: TuTanggaltersediaBinding(),
+    ),
+    GetPage(
+      name: _Paths.TU_EDITTIM,
+      page: () => const TuEdittimView(),
+      binding: TuEdittimBinding(),
     ),
   ];
 }

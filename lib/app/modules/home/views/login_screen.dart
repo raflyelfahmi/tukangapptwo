@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart'; // Tambahkan import GetX
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tukangapptwo/app/modules/dashboardtukang/views/dashboardtukang_view.dart';
 import 'package:tukangapptwo/app/modules/dashboarduser/views/dashboarduser_view.dart';
 import 'package:tukangapptwo/app/modules/registerbutton/views/registerbutton_view.dart';
-import 'package:get/get.dart'; // Tambahkan import GetX
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -45,8 +45,15 @@ class _LoginScreenState extends State<LoginScreen> {
       print('Role from SharedPreferences: $role'); // Tambahkan log untuk role
       if (role == 'tukang') {
         String status = await _getUserStatus(uid);
-        if (status == 'approved') {
+        String? statusAkun = await _getUserAccountStatus(uid);
+        if (statusAkun == 'nonaktif') {
+          _showFlushBar("Akun anda telah dinonaktifkan.", Colors.red, () {});
+          await _auth.signOut(); // Logout user if account is deactivated
+        } else if (status == 'approved') {
           Get.offAll(() => DashboardtukangView()); // Gunakan GetX untuk navigasi
+        } else if (status == 'rejected') {
+          _showFlushBar("Portofolio yang diunggah belum sesuai kriteria yang dibutuhkan.", Colors.red, () {});
+          await _auth.signOut(); // Logout user if rejected
         } else {
           _showFlushBar("Akun Anda belum disetujui oleh admin.", Colors.red, () {});
         }
@@ -77,9 +84,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
         if (role == 'tukang') {
           String status = await _getUserStatus(user.uid);
-          if (status == 'approved') {
+          String? statusAkun = await _getUserAccountStatus(user.uid);
+          if (statusAkun == 'nonaktif') {
+            _showFlushBar("Akun anda telah dinonaktifkan.", Colors.red, () {});
+            await _auth.signOut(); // Logout user if account is deactivated
+          } else if (status == 'approved') {
             _showFlushBar("Login successful", Colors.green, () {}); // Pindahkan ke sini
             Get.offAll(() => DashboardtukangView()); // Gunakan GetX untuk navigasi
+          } else if (status == 'rejected') {
+            _showFlushBar("Portofolio yang diunggah belum sesuai kriteria yang dibutuhkan.", Colors.red, () {});
+            await _auth.signOut(); // Logout user if rejected
           } else {
             _showFlushBar("Akun Anda belum disetujui oleh admin.", Colors.red, () {});
             await _auth.signOut(); // Logout user if not approved
@@ -119,6 +133,16 @@ class _LoginScreenState extends State<LoginScreen> {
       return event.snapshot.value as String;
     } else {
       throw Exception("User status not found");
+    }
+  }
+
+  Future<String?> _getUserAccountStatus(String uid) async {
+    DatabaseReference ref = FirebaseDatabase.instance.ref("users/$uid/statusAkun");
+    DatabaseEvent event = await ref.once();
+    if (event.snapshot.exists) {
+      return event.snapshot.value as String?;
+    } else {
+      return null; // Return null if statusAkun does not exist
     }
   }
 

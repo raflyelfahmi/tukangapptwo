@@ -38,6 +38,10 @@ abstract class Routes {
   static const DETAILHISTORYPESANAN_TUKANG = _Paths.DETAILHISTORYPESANAN_TUKANG;
   static const DETAILPESANANUSER = _Paths.DETAILPESANANUSER;
   static const DETAILCEKORDER = _Paths.DETAILCEKORDER;
+  static const KELOLAINFORMASI = _Paths.KELOLAINFORMASI;
+  static const KELOLAAKUNTUKANG = _Paths.KELOLAAKUNTUKANG;
+  static const TU_TANGGALTERSEDIA = _Paths.TU_TANGGALTERSEDIA;
+  static const TU_EDITTIM = _Paths.TU_EDITTIM;
 }
 
 abstract class _Paths {
@@ -77,4 +81,8 @@ abstract class _Paths {
   static const DETAILHISTORYPESANAN_TUKANG = '/detailhistorypesanan-tukang';
   static const DETAILPESANANUSER = '/detailpesananuser';
   static const DETAILCEKORDER = '/detailcekorder';
+  static const KELOLAINFORMASI = '/kelolainformasi';
+  static const KELOLAAKUNTUKANG = '/kelolaakuntukang';
+  static const TU_TANGGALTERSEDIA = '/tu-tanggaltersedia';
+  static const TU_EDITTIM = '/tu-edittim';
 }

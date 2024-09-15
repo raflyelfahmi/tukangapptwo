@@ -76,6 +76,10 @@ class DetailhistorypesananTukangView extends StatelessWidget {
                           _buildRatingRow('Rating', orderData['rating']),
                         if (orderData.containsKey('review')) 
                           _buildInfoRow('Ulasan', orderData['review']),
+                        if (orderData.containsKey('transferTukang')) 
+                          _buildInfoRow('Status Transfer Tukang', orderData['transferTukang']),
+                        if (orderData.containsKey('tukangPayment')) 
+                          _buildInfoRow('Tukang Payment', orderData['tukangPayment']),
                       ],
                     ),
                   ),

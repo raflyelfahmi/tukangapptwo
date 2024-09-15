@@ -222,7 +222,7 @@ class DetailcekorderView extends GetView<DetailcekorderController> {
                               const SizedBox(height: 8),
                               Text('Tanggal Mulai: ${orderDetails['tanggalMulai'] ?? 'Tidak tersedia'}', style: const TextStyle(fontSize: 16)),
                               const SizedBox(height: 8),
-                              Text('Estimasi: ${orderDetails['estimasi'] ?? 'Tidak tersedia'}', style: const TextStyle(fontSize: 16)),
+                              Text('Tanggal Berakhir: ${orderDetails['tanggalBerakhir'] ?? 'Tidak tersedia'}', style: const TextStyle(fontSize: 16)),
                             ],
                           ),
                         ),

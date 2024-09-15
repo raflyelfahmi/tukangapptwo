@@ -22,6 +22,7 @@ class _RegistertukangnewViewState extends State<RegistertukangnewView> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
   final TextEditingController _whatsappController = TextEditingController();
+  final TextEditingController _teamCountController = TextEditingController();
   String? _filePath;
   String? _pdfFileName;
 
@@ -70,6 +71,7 @@ class _RegistertukangnewViewState extends State<RegistertukangnewView> {
           'pdfUrl': pdfUrl,
           'role': 'tukang', // Menandakan bahwa ini adalah akun tukang
           'status': 'pending', // Status pending menunggu persetujuan admin
+          'teamCount': int.tryParse(_teamCountController.text),
         }).then((_) {
           print('Data saved successfully');
         }).catchError((error) {
@@ -250,6 +252,18 @@ class _RegistertukangnewViewState extends State<RegistertukangnewView> {
                     },
                   ),
                   const SizedBox(height: 20),
+                  TextFormField(
+                    controller: _teamCountController,
+                    decoration: _inputDecoration('Jumlah Tim'),
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the number of team members';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 20),
                   GestureDetector(
                     onTap: _pickPDF,
                     child: Container(
@@ -304,6 +318,7 @@ class _RegistertukangnewViewState extends State<RegistertukangnewView> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     _whatsappController.dispose();
+    _teamCountController.dispose();
     super.dispose();
   }
 }

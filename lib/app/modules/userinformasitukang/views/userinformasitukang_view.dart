@@ -28,6 +28,7 @@ class _UserinformasitukangViewState extends State<UserinformasitukangView> {
   int _completedOrdersCount = 0;
   double _overallRating = 0.0;
   List<Map<String, dynamic>> _reviews = [];
+  String? _tanggalTersedia;
 
   @override
   void initState() {
@@ -78,6 +79,7 @@ class _UserinformasitukangViewState extends State<UserinformasitukangView> {
       _fetchCompletedOrdersCount(userId);
       _fetchOverallRating(userId);
       _fetchReviews(userId);
+      _fetchTanggalTersedia(userId);
     } else {
       logger.w('User snapshot value is null');
       setState(() {
@@ -134,6 +136,16 @@ class _UserinformasitukangViewState extends State<UserinformasitukangView> {
       }
       setState(() {
         _reviews = reviews;
+      });
+    }
+  }
+
+  void _fetchTanggalTersedia(String userId) async {
+    DatabaseEvent event = await _database.child('users/$userId/tanggalTersedia').once();
+    DataSnapshot snapshot = event.snapshot;
+    if (snapshot.value != null) {
+      setState(() {
+        _tanggalTersedia = snapshot.value as String;
       });
     }
   }
@@ -265,6 +277,8 @@ class _UserinformasitukangViewState extends State<UserinformasitukangView> {
                 children: [
                   _buildInfoTile('Nama', _tukangUser!['name']),
                   _buildInfoTile('Email', _tukangUser!['email']),
+                  if (_tanggalTersedia != null)
+                    _buildInfoTile('Tanggal Ketersediaan', _tanggalTersedia!),
                   SizedBox(height: 10),
                   Row(
                     children: [

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:tukangapptwo/app/modules/cekordertukang/views/cekordertukang_view.dart';
-import 'package:tukangapptwo/app/modules/kelolainformasitukang/views/kelolainformasitukang_view.dart';
+import 'package:tukangapptwo/app/modules/kelolaakuntukang/views/kelolaakuntukang_view.dart';
 import 'package:tukangapptwo/app/modules/profilscreen_tukang/views/profilscreen_tukang_view.dart';
 
 class DashboardtukangView extends StatefulWidget {
@@ -157,7 +157,7 @@ class _DashboardtukangViewState extends State<DashboardtukangView> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const KelolainformasitukangView()),
+                        MaterialPageRoute(builder: (context) => const KelolaakuntukangView()),
                       );
                     },
                     child: Container(
